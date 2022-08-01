@@ -5,6 +5,7 @@ import Home from "./views/Home";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Private from "./views/Private";
+import injectContext from "./store/appContext";
 
 const Layout = () => {
   return (
@@ -21,4 +22,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default injectContext(Layout);
