@@ -3,6 +3,8 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from models import db
+from routes.auth import auth
+from routes.account import account
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -17,6 +19,9 @@ jwt = JWTManager(app)
 CORS(app)
 
 ### Code between this lines ###
+
+app.register_blueprint(auth, url_prefix='/api')
+app.register_blueprint(account, url_prefix='/api')
 
 @app.route('/')
 def root():
