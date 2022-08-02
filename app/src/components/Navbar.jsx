@@ -34,7 +34,15 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            {/* Conditionally Rendering links if currentUser is different of null, if user is logged don't show login/register, only show a dropdown with the name of the user to signout */}
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+              to="/private"
+            >
+              Profile
+            </NavLink>
+            {/* Conditionally Rendering links if currentUser is different of null, if user is logged don't show login/register, only show a dropdown with the name of the user to signout or its email*/}
             {!!store.currentUser ? (
               <li className="nav-item dropdown">
                 <a
@@ -44,7 +52,8 @@ const Navbar = () => {
                   role="button"
                   aria-expanded="false"
                 >
-                  {store.currentUser?.user?.profile?.name}
+                  {store.currentUser?.user?.profile?.name ||
+                    store.currentUser?.user?.email}
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -92,14 +101,6 @@ const Navbar = () => {
                 </NavLink>
               </>
             )}
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-              to="/private"
-            >
-              Profile
-            </NavLink>
           </div>
         </div>
       </div>
