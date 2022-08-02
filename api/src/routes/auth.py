@@ -34,7 +34,7 @@ def login():
         'user': userExists.serialize()
     }
 
-    return jsonify({'status': 'success', 'message:': 'Login successfully', 'data': data}), 200
+    return jsonify({ "status": "success", "message": "Login successfully", "data": data }), 200
 
 
 @auth.route('/register', methods=['POST'])

@@ -9,7 +9,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       apiURL: "http://127.0.0.1:5000",
       email: "",
       password: "",
-      store: null,
     },
     // Define all my functions
     actions: {
@@ -38,7 +37,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify(fields),
         });
 
-        // Destructuring the attributes from the response
         const { status, message, data } = await response.json();
 
         console.log(data);
@@ -49,7 +47,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
         if (status === "success") {
           Swal.fire({
-            position: "center",
             icon: "success",
             title: message,
             showConfirmButton: false,
