@@ -8,7 +8,7 @@ const Login = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 p-5">
-            <form className="m-5">
+            <form className="m-5" onSubmit={actions.handleLogin}>
               <div className="row mb-3">
                 <label
                   htmlFor="inputEmail3"
@@ -46,7 +46,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="d-flex">
-                <button type="button" className="btn btn-primary w-100">
+                <button type="submit" className="btn btn-primary w-100">
                   Sign in
                 </button>
               </div>

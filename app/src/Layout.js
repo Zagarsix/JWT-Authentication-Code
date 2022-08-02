@@ -6,6 +6,7 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import Private from "./views/Private";
 import injectContext from "./store/appContext";
+import { ToastContainer } from "react-toastify";
 
 const Layout = () => {
   return (
@@ -18,6 +19,7 @@ const Layout = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/private" element={<Private />} />
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 };
