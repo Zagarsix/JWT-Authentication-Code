@@ -1,14 +1,20 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const Login = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 p-5">
-            <form className="m-5" onSubmit={actions.handleLogin}>
+            <form
+              className="m-5"
+              onSubmit={(e) => actions.handleLogin(e, navigate)}
+            >
               <div className="row mb-3">
                 <label
                   htmlFor="inputEmail3"

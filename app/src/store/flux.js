@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -19,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           [name]: value,
         });
       },
-      handleLogin: async (e) => {
+      handleLogin: async (e, navigate) => {
         e.preventDefault();
 
         const { apiURL, email, password } = getStore();
@@ -38,22 +38,25 @@ const getState = ({ getStore, getActions, setStore }) => {
           body: JSON.stringify(fields),
         });
 
-        const data = await response.json();
+        // Destructuring the attributes from the response
+        const { status, message, data } = await response.json();
 
         console.log(data);
 
         // Display a certain notification based on status of the fetch data
-        if (data.status === "failed") {
-          toast.error(data.message);
+        if (status === "failed") {
+          toast.error(message);
         }
-        if (data.status === "success") {
+        if (status === "success") {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: data.message,
+            title: message,
             showConfirmButton: false,
             timer: 1500,
           });
+
+          navigate("/private");
         }
       },
     },
