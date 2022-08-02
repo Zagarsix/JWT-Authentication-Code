@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       apiURL: "http://127.0.0.1:5000",
       email: "",
       password: "",
+      currentUser: null,
     },
     // Define all my functions
     actions: {
@@ -53,7 +54,21 @@ const getState = ({ getStore, getActions, setStore }) => {
             timer: 1500,
           });
 
+          // Saving user data on session storage
+          sessionStorage.setItem("currentUser", JSON.stringify(data));
+
+          setStore({
+            currentUser: data,
+          });
+
           navigate("/private");
+        }
+      },
+      checkAuth: () => {
+        if (sessionStorage.getItem("currentUser")) {
+          setStore({
+            currentUser: JSON.parse(sessionStorage.getItem("currentUser")),
+          });
         }
       },
     },

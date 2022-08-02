@@ -18,7 +18,9 @@ const injectContext = (PassedComponent) => {
       })
     );
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+      state.actions.checkAuth();
+    }, [state.store]);
 
     return (
       <Context.Provider value={state}>

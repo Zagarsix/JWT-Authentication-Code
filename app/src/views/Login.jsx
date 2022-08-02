@@ -1,10 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const Login = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+
+  useEffect(() => {}, []);
+
+  // If user signed in, redirect to home page
+  useEffect(() => {
+    if (store.currentUser !== null) navigate("/private");
+  }, [store.currentUser]);
 
   return (
     <>

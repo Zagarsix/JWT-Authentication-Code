@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { Context } from "../store/appContext";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -30,22 +34,64 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-              to="/login"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-              to="/register"
-            >
-              Register
-            </NavLink>
+            {/* Conditionally Rendering links if currentUser is different of null, if user is logged don't show login/register, only show a dropdown with the name of the user to signout */}
+            {!!store.currentUser ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  href="#"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  {store.currentUser?.user?.profile?.name}
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Action
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Another action
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Something else here
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Separated link
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                  to="/register"
+                >
+                  Register
+                </NavLink>
+              </>
+            )}
             <NavLink
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
