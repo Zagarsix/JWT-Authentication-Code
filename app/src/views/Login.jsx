@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { Context } from "../store/appContext";
+
 const Login = () => {
+  const { store, actions } = useContext(Context);
   return (
     <>
       <div className="container">
@@ -16,8 +20,10 @@ const Login = () => {
                   <input
                     type="email"
                     className="form-control"
-                    name="email"
                     id="email"
+                    name="email"
+                    value={store.email}
+                    onChange={actions.handleChange}
                   />
                 </div>
               </div>
@@ -32,8 +38,10 @@ const Login = () => {
                   <input
                     type="password"
                     className="form-control"
-                    name="password"
                     id="password"
+                    name="password"
+                    value={store.password}
+                    onChange={actions.handleChange}
                   />
                 </div>
               </div>

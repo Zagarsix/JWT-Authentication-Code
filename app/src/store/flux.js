@@ -13,6 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           [name]: value,
         });
       },
+      handleLogin: (e) => {
+        e.preventDefault();
+      },
     },
   };
 };
