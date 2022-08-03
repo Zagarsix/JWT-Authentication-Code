@@ -46,10 +46,11 @@ def update_profile():
     user.email = email
     user.profile.name = name
     user.profile.biography = biography
+    user.update()
 
 
     user = User.query.get(id)
     data = {
-        "user": user.serialize()
+        'user': user.serialize()
     }
     return jsonify({'status': 'success', 'message': 'Login successfully', 'data': data}), 200

@@ -1,10 +1,18 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+
+  useEffect(() => {}, []);
+
+  // If user is not signed in, redirect to login
+  useEffect(() => {
+    if (store.currentUser === null) navigate("/login");
+  }, [store.currentUser]);
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -38,7 +46,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
-              to="/private"
+              to="/profile"
             >
               Profile
             </NavLink>
@@ -75,9 +83,12 @@ const Navbar = () => {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Separated link
-                    </a>
+                    <button
+                      className="dropdown-item"
+                      onClick={actions.handleLogout}
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </li>

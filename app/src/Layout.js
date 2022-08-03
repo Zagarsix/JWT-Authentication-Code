@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Register from "./views/Register";
-import Private from "./views/Private";
+import Profile from "./views/Profile";
 import injectContext from "./store/appContext";
 import { ToastContainer } from "react-toastify";
 
@@ -17,7 +17,7 @@ const Layout = () => {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/private" element={<Private />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

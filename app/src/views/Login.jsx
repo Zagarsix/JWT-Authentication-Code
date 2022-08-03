@@ -10,7 +10,7 @@ const Login = () => {
 
   // If user signed in, redirect to home page
   useEffect(() => {
-    if (store.currentUser !== null) navigate("/private");
+    if (store.currentUser !== null) navigate("/profile");
   }, [store.currentUser]);
 
   return (
