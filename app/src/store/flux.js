@@ -125,7 +125,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             email: currentUser?.user.email,
             password: "",
             name: currentUser?.user?.profile?.name,
-            biography: currentUser?.user?.profile?.biography,
+            role: currentUser?.user?.profile?.role,
+            description: currentUser?.user?.profile?.description,
           });
         }
       },
@@ -150,14 +151,15 @@ const getState = ({ getStore, getActions, setStore }) => {
       handleProfile: async (e) => {
         e.preventDefault();
 
-        const { apiURL, email, password, name, biography, currentUser } =
+        const { apiURL, email, password, name, role, description, currentUser } =
           getStore();
 
         const fields = {
           email: email,
           password: password,
           name: name,
-          biography: biography,
+          role: role,
+          description: description,
         };
 
         // Fetching data from API

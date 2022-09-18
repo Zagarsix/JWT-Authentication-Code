@@ -27,10 +27,10 @@ def update_profile():
 
     # profile
     name = request.json.get('name', '')
-    biography = request.json.get('biography', '')
+    role = request.json.get('role', '')
+    description = request.json.get('description', '')
     
     if not email: return jsonify({'status': 'failed', 'message': 'Email is required', 'data': None}), 400
-    # if not password: return jsonify({'status': 'failed', 'message': 'Password is required', 'data': None}), 400
 
     # update profile
 
@@ -45,7 +45,8 @@ def update_profile():
 
     user.email = email
     user.profile.name = name
-    user.profile.biography = biography
+    user.profile.role = role
+    user.profile.description = description
     user.update()
 
 

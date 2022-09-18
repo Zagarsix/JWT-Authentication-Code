@@ -59,7 +59,7 @@ const Register = () => {
                 </div>
               </div>
               <div className="d-flex">
-                <button type="submit" className="btn btn-primary w-100">
+                <button type="submit" className="btn btn-success w-100">
                   Sign Up
                 </button>
               </div>

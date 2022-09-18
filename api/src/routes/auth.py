@@ -45,7 +45,8 @@ def register():
 
     # profile
     name = request.json.get('name', '')
-    biography = request.json.get('biography', '')
+    role = request.json.get('role', '')
+    description = request.json.get('description', '')
     
     if not email: return jsonify({'status': 'failed', 'message': 'Email is required', 'data': None}), 400
     if not password: return jsonify({'status': 'failed', 'message': 'Password is required', 'data': None}), 400
@@ -62,7 +63,8 @@ def register():
 
     profile = Profile()
     profile.name = name
-    profile.biography = biography
+    profile.role = role
+    profile.description = description
 
     user.profile = profile
     user.save()

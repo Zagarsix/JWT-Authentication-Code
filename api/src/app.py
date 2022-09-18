@@ -25,7 +25,7 @@ app.register_blueprint(account, url_prefix='/api')
 
 @app.route('/')
 def root():
-    return jsonify({"message": "Welcome to my API"}), 200
+    return jsonify({"message": "Welcome to my JWT-Authentication API"}), 200
 
 ### Code between this lines ###
 if __name__ == '__main__':
